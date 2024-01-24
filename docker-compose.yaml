@@ -1,0 +1,36 @@
+version: "3"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: stella-feed
+    ports:
+      - 8080:8080
+      - 9230:9229
+    working_dir: /home/node/app
+    volumes:
+      - .:/home/node/app
+    networks:
+      - stella-feed
+    tty: true
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:7-jammy
+    container_name: mongodb-feed
+    ports:
+      - 27017:27017
+    volumes:
+      - dbdata6:/feed/data/db
+    networks:
+      - stella-feed
+
+networks:
+  stella-feed:
+    driver: bridge
+
+volumes:
+  dbdata6:

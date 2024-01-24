@@ -1,0 +1,6 @@
+node_modules
+.env
+/zips
+/unzips
+**.zip
+rest_of_code.ts
