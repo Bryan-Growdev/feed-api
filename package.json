@@ -36,5 +36,10 @@
   "moduleDirectories": [
     "node_modules",
     "src"
-  ]
+  ],
+  "engines": {
+		"yarn": ">=1.22 <2",
+		"node": ">=20",
+		"npm": ">=6"
+	}
 }
