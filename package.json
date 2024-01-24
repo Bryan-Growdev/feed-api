@@ -7,9 +7,9 @@
   "author": "stella-development",
   "scripts": {
     "dev": "tsx watch src/server.ts",
-    "build": "tsc",
+		"build": "tsc",
     "start": "node dist/src/server.js",
-    "postinstall": "build"
+    "postinstall": "yarn tsc"
   },
   "devDependencies": {
     "@types/adm-zip": "^0.5.5",
