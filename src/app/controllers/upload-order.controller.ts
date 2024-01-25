@@ -70,7 +70,7 @@ export class UploadOrderController {
       console.log('WRITABLE CLOSED');
 
       unzipService.unzip(finalPath).then((outDir) => {
-        response.status(200).send('OK');
+        response.status(200).json({ ok: true });
 
         fs.rmSync(finalPath, { force: true, recursive: true });
 
