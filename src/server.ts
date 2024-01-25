@@ -4,6 +4,7 @@ import cors from 'cors';
 import express, { Request, Response, json } from 'express';
 import mongoose from 'mongoose';
 const { PORT } = appEnvironments;
+const { mongoHost } = mongoEnvironment
 
 const app = express();
 const router = express.Router();
@@ -22,7 +23,7 @@ router.get('/', (req: Request, res: Response) => {
 app.use(json(), cors());
 app.use('/', router);
 
-mongoose.connect(mongoEnvironment.mongoHost)
+mongoose.connect(mongoHost)
   .then(() => {
     const server = app.listen(PORT, () => console.log(`API running at ${PORT}`));
     server.setTimeout(3.6e+6)
