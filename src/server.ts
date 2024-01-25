@@ -1,7 +1,7 @@
 import { appEnvironments, mongoEnvironment } from '@envs/.';
 import { UploadOrderController } from 'app/controllers';
 import cors from 'cors';
-import express, { Request, Response, json } from 'express';
+import express, { Response, json } from 'express';
 import mongoose from 'mongoose';
 const { PORT } = appEnvironments;
 const { mongoHost } = mongoEnvironment
@@ -12,13 +12,7 @@ const router = express.Router();
 const controller = new UploadOrderController();
 
 router.put('/upload-zip', controller.execute);
-router.get('/', (req: Request, res: Response) => {
-  console.log('API OK');
-  return res.status(200).json({
-    ok: true,
-    mensagem: 'Tudo certo por aqui'
-  })
-});
+router.get('/', (_, res: Response) => res.status(200).json({ ok: true }));
 
 app.use(json(), cors());
 app.use('/', router);
