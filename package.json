@@ -1,6 +1,6 @@
 {
   "name": "feed-api",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "API para receber e armazenar dados do Stella Feed em backup",
   "main": "server.js",
   "license": "MIT",

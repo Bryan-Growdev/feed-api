@@ -14,7 +14,10 @@ export class UploadOrderController {
     response.setTimeout(3.6e+6);
 
     if (request.headers['content-type']?.split('/')[1] !== 'zip') {
-      return response.status(400).send('BAD REQUEST')
+      return response.status(400).json({
+        ok: false,
+        message: Messages.invalidZip,
+      })
     }
 
     const conversionFactor = 1024 * 1024;
@@ -26,7 +29,10 @@ export class UploadOrderController {
     const { filePath } = request.query;
 
     if (!filePath || typeof filePath !== 'string') {
-      return response.status(400).send('ARQUIVO SEM NOME')
+      return response.status(400).json({
+        ok: false,
+        message: Messages.unnamedFile,
+      })
     }
 
     if (!fs.existsSync('zips')) {
