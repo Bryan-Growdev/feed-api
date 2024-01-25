@@ -29,6 +29,10 @@ export class UploadOrderController {
       return response.status(400).send('ARQUIVO SEM NOME')
     }
 
+    if (!fs.existsSync('zips')) {
+      fs.mkdirSync('zips');
+    }
+
     const finalPath = `zips/${filePath}`;
 
     fs.rmSync(finalPath, { force: true, recursive: true });
