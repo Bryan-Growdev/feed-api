@@ -46,12 +46,15 @@ export class UploadOrderController {
     const stream = fs.createWriteStream(finalPath);
 
     const saveBuffer = (data: Buffer) => {
+      stream.write(data);
       const mb = data.byteLength / conversionFactor;
       count += mb;
       percentage += mb * byteValue;
-
-      console.table({ rBytes: count.toFixed(2) + '/' + total, percentage: percentage.toFixed(2) + '%' });
-      stream.write(data);
+      if ((percentage > 25 && percentage < 26) ||
+        (percentage > 50 && percentage < 51) ||
+        (percentage > 98 && percentage < 99)) {
+        console.table({ rBytes: count.toFixed(2) + '/' + total, percentage: percentage.toFixed(2) + '%' });
+      }
     };
 
     request
